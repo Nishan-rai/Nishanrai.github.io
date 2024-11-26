@@ -1,227 +1,260 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Nishan's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Nishan's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <style>
-        /* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #D8BFD8;
-}
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-/* Header */
-header {
-    background-color:lightblue;
-    color: black;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        /* Portfolio Container */
+        .protfolio-container {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+        }
 
-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-}
+        /* Navigation Menu Styling */
+        .navlist {
+            display: flex;
+            gap: 3.5rem;
+            height: 15vh;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0; /* Ensure the menu stays at the top */
+            background-color: #000; /* Black background for the navbar */
+            z-index: 1000; /* Make sure it's above other content */
+        }
 
-header p {
-    font-size: 1.2rem;
-    margin-top: 5px;
-}
+        /* Navigation Menu Links */
+        .navlist li {
+            list-style: none;
+        }
 
-header nav {
-    margin-top: 10px;
-}
+        .navlist li a {
+            text-decoration: none;
+            text-transform: uppercase; /* Make text uppercase */
+            font-size: 1.2rem; /* Adjust font size */
+            font-weight: bold; /* Bold text for the navigation links */
+            color: #fff; /* White text color */
+            position: relative;
+            transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
 
-header nav a {
-    color: black;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-}
+        /* Hover effect for links */
+        .navlist li a:hover {
+            color: #e68a71; /* Change text color to a shade of orange on hover */
+        }
 
-header nav a:hover {
-    color: white;
-}
+        /* Active link underline effect */
+        .navlist li a::after, 
+        .navlist .active::after {
+            content: "";
+            position: absolute;
+            background: #fff; /* White underline */
+            width: 100%;
+            height: .1rem;
+            left: 0;
+            bottom: -5px;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform .5s;
+        }
 
-/* Sections */
-section {
-    padding: 40px 20px;
-    margin: 20px auto;
-    max-width: 800px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
+        /* On hover and when active, the underline appears */
+        .navlist li a:hover::after, 
+        .navlist .active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
 
-section:hover {
-    transform: translateY(-5px);
-}
+        /* Left and Right Container Styling */
+        .left-container, .right-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
 
-section h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #0066cc;
-    display: inline-block;
-    padding-bottom: 5px;
-}
+        .left-container {
+            background: #190f0f;
+            width: 70%;
+            padding-left: 3rem;
+        }
 
-section p, section ul {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 20px;
-    line-height: 1.7;
-}
+        .right-container {
+            background: linear-gradient(-45deg, #f89a3b, #f89a3b 70%);
+            width: 30%;
+        }
 
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
+        /* Icons and Content */
+        .icons .fa-brands {
+            color: #bbb;
+            font-size: 1.7rem;
+        }
 
-.project {
-    margin-bottom: 20px;
-    background-color: #f4f4f9;
-    padding: 15px;
-    border-left: 4px solid #0066cc;
-    border-radius: 5px;
-}
+        .icons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
 
-.project h3 {
-    font-size: 1.3rem;
-    color: #333;
-    margin-bottom: 8px;
-}
+        .content {
+            margin-left: 4rem;
+        }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px 0;
-    background-color: #333;
-    color: #fff;
-    margin-top: 30px;
-    font-size: 0.9rem;
-}
+        .content .intro {
+            font-size: 1.5rem;
+            color: #fff;
+        }
 
-/* Contact Links */
-#contact p {
-    font-size: 1rem;
-    color: #0066cc;
-}
+        .content .intro span {
+            color: #e68a71; /* Highlight name in orange */
+        }
 
-#contact a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-}
+        .content h1 {
+            font-size: 4rem;
+            color: #e68a71;
+        }
 
-#contact a:hover {
-    color: #0066cc;
-}
+        .content .detail {
+            font-size: 1.1rem;
+            color: #fff;
+            max-width: 38rem;
+            margin: 1.1rem 0 3rem 0;
+            line-height: 1.8rem;
+        }
 
-/* Hover and Transition Effects */
-a {
-    transition: color 0.3s ease;
-}
+        /* Button Styles */
+        .btn-container button {
+            border: .1rem solid #e68a71;
+            font-size: 1.1rem;
+            padding: .8rem 1.5rem;
+            border-radius: .5rem;
+            cursor: pointer;
+            transition: .5s ease;
+        }
 
-a:hover {
-    color: #ffe066;
-}
+        button:nth-child(1) {
+            background: #e68a71;
+            color: #231313;
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-    header nav a {
-        margin: 0 10px;
-        font-size: 0.9rem;
-    }
-    section h2 {
-        font-size: 1.8rem;
-    }
-    footer {
-        font-size: 0.8rem;
-    }
-}
+        button:nth-child(2) {
+            background: transparent;
+            color: #e68a71;
+            margin-left: 2rem;
+        }
 
+        button:nth-child(1):hover {
+            background: transparent;
+            color: #e68a71;
+        }
+
+        button:nth-child(2):hover {
+            background: #e68a71;
+            color: #190f0f;
+        }
+
+        /* Hover effect for icons */
+        .icons .fa-brands:hover {
+            cursor: pointer;
+            background: linear-gradient(#fff, #eca146);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Design Elements (circles) */
+        .design .circle {
+            aspect-ratio: 1;
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+        }
+
+        .circle:nth-child(1) {
+            background: linear-gradient(90deg, transparent 50%, #0e0b0b 50%);
+            width: 38rem;
+        }
+
+        .circle:nth-child(2) {
+            width: 30rem;
+            background-image: url("WhatsApp Image 2024-11-21 at 12.40.52 AM.jpeg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            border: .3rem solid white;
+            box-shadow: 
+                0 0 1rem #fff,
+                inset 0 0 1rem #fff,
+                0 0 2rem #ec572a,
+                inset 0 0 2rem #ec572a,
+                0 0 4rem #ec572a,
+                inset 0 0 4rem #ec572a;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
     </style>
 
-    <!-- Header Section -->
-    <header>
-        <h1>NISHAN K RAI</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>"Hello! I’m Nishan K Rai, pursuing Computer Science Engineering at  Vivekananda college of engineering and technology . I’ve always been fascinated by technology and software development, and I’m excited to start my journey in this field. So far, I’ve learned the basics of programming languages like C++, and I’m looking forward to diving deeper into web development. In my free time, I enjoy exploring coding challenges."</p>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li><strong>Bachelor of Engineering in Computer Science Engineering</strong><br> Vivekananda college of engineering and technology, 2026</li>
-            <li><strong>PUC </strong><br> Ambika PU College Nellikatte , Puttur, 2022</li>
-            <li><strong>High School </strong><br> Bethany english medium high School,Puttur, 2019</li>
-
+    <div class="protfolio-container">
+        <ul class="navlist">
+            <!-- Navigation Menu -->
+            <nav style="display:flex ;gap: 16px;">
+                <li><a href="index.html">About Me</a></li>
+                <li><a href="biodata.html">Bio-Data</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </nav>
         </ul>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2> Skills</h2>
-        <ul>
-            <li>Technical Skills: C++ ,HTML , CSS.</li>
-            <li>Soft Skills:Communication Skill, Teamwork and Collaboration,Creativity.</li>
-        </ul>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Student portfolio creation</h3>
-            <p>Created my portfolio using html and css </p>
+        <div class="left-container">
+            <div class="icons">
+                <!-- Add social icons or any other content here -->
+            </div>
+            <div class="content">
+                <p class="intro">Hey! I am <span>Nishan K Rai</span></p>
+                <h1>Computer Science.</h1> 
+                <p class="detail">"Pursuing Computer Science Engineering at Vivekananda College of Engineering and Technology. I’ve always been fascinated by technology and software development, and I’m excited to start my journey in this field. So far, I’ve learned the basics of programming languages like C++, and I’m looking forward to diving deeper into web development. In my free time, I enjoy exploring coding challenges."</p>
+            </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: nishanr973@gmail.com</p>
-        <p>LinkedIn: <a href=https://www.linkedin.com/in/nishan-rai-30b17a235>https://linkedin.com/in/nishan-rai-30b17a235</a></p>
-    </section>
+        <div class="right-container"></div>
+        <div class="design">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Nishan K Rai. All rights reserved.</p>
-    </footer>
-
+    <center>
+        <footer>
+            <p>&copy; 2024 Nishan K Rai. All rights reserved.</p>
+        </footer>
+    </center>
 </body>
 </html>
